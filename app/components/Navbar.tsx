@@ -15,6 +15,8 @@ const Navbar = () => {
   // opacity 1- full visible
   // opacity 0- fully transparent
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     //this function will run everytime the user scrolls
     const handleScroll = () => {
       // scrollY is the number of pixels the user has scrolled down from the top of the page
@@ -24,10 +26,17 @@ const Navbar = () => {
       // Never allow opacity to go above 1
       const newOpacity = Math.max(0, 1 - scrollY / 200);
       setNavOpacity(newOpacity);
+
+      // Close dropdown when scrolling down (regardless of hover state)
+      if (scrollY > lastScrollY && isProductsOpen) {
+        setIsProductsOpen(false);
+      }
+
+      lastScrollY = scrollY;
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isProductsOpen]);
 
   // Calculate effective opacity (show fully when hovered or dropdown open)
   const effectiveOpacity = isProductsOpen ? 1 : navOpacity;
@@ -169,8 +178,8 @@ const Navbar = () => {
               </div>
 
               {/* Dotted separator line */}
+              <div className="border-t border-dashed border-[#2D3E2F]/20  mb-0.5" />
               <div className="border-t border-dashed border-[#2D3E2F]/20" />
-              <div className="border-t border-dashed border-[#2D3E2F]/20 mb-0.5" />
             </div>
 
             {/* Bottom section with text and links */}
