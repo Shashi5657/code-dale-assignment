@@ -37,7 +37,6 @@ const COMPANY_NAMES = [
   "Reforge",
   "salesforce",
   "DoorDash",
-  "Giift",
   "Daybreak",
   "Coframe",
   "McKinsey",

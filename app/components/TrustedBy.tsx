@@ -19,10 +19,6 @@ const DoorDashLogo = () => (
   </div>
 )
 
-const GiiftLogo = () => (
-  <span className="text-xl font-bold tracking-tight text-[#2D3E2F]">Giift</span>
-)
-
 const DaybreakLogo = () => (
   <div className="flex items-center gap-1.5">
     <span className="text-base font-medium text-[#2D3E2F]">Daybreak</span>
