@@ -144,6 +144,7 @@ const Navbar = () => {
             {/* Top section with icons */}
             <div style={{ paddingInline: "var(--grid-margin, 24px)" }}>
               {/* Dotted separator line */}
+              <div className="border-t border-dashed border-[#2D3E2F]/20 mb-0.5" />
               <div className="border-t border-dashed border-[#2D3E2F]/20 mb-10" />
 
               {/* Icons row */}
@@ -168,6 +169,7 @@ const Navbar = () => {
               </div>
 
               {/* Dotted separator line */}
+              <div className="border-t border-dashed border-[#2D3E2F]/20" />
               <div className="border-t border-dashed border-[#2D3E2F]/20" />
             </div>
 
