@@ -170,7 +170,7 @@ const Navbar = () => {
 
               {/* Dotted separator line */}
               <div className="border-t border-dashed border-[#2D3E2F]/20" />
-              <div className="border-t border-dashed border-[#2D3E2F]/20" />
+              <div className="border-t border-dashed border-[#2D3E2F]/20 mb-0.5" />
             </div>
 
             {/* Bottom section with text and links */}
