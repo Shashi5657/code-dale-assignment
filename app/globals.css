@@ -416,20 +416,12 @@
   }
 }
 
-.iterate-rotate-cw {
-  animation: iterate-rotate-cw 8s linear infinite;
-}
-
-.iterate-rotate-ccw {
-  animation: iterate-rotate-ccw 8s linear infinite;
-}
-
 .group:hover .iterate-rotate-cw {
-  animation-duration: 2s;
+  animation: evaluate-rotate-cw-hover 10s linear infinite;
 }
 
 .group:hover .iterate-rotate-ccw {
-  animation-duration: 2s;
+  animation: evaluate-rotate-ccw-hover 10s linear infinite;
 }
 
 /* Evaluate icon rotation animations - fast for 2s on hover, then slow */
@@ -475,12 +467,13 @@
   }
 }
 
+/* Evaluate icon - rotates only on hover (fast for 2s, then slow) */
 .evaluate-rotate-cw {
-  animation: evaluate-rotate-cw 8s linear infinite;
+  /* No animation by default - only on hover */
 }
 
 .evaluate-rotate-ccw {
-  animation: evaluate-rotate-ccw 8s linear infinite;
+  /* No animation by default - only on hover */
 }
 
 .group:hover .evaluate-rotate-cw {
@@ -568,4 +561,20 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-adaline-green-dark);
   }
+}
+
+/* Page loader fade-out animation */
+@keyframes pageLoaderFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.page-loader-fade-out {
+  animation: pageLoaderFadeOut 0.7s ease-out forwards;
 }

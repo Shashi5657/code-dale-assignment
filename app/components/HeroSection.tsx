@@ -60,7 +60,15 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return shuffled;
 };
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onLoadingProgress?: (progress: number) => void;
+  onLoadingComplete?: () => void;
+}
+
+const HeroSection = ({
+  onLoadingProgress,
+  onLoadingComplete,
+}: HeroSectionProps = {}) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
@@ -120,15 +128,25 @@ const HeroSection = () => {
       img.src = getFramePath(i);
       img.onload = () => {
         loadedCount++;
-        setLoadingProgress(Math.round((loadedCount / TOTAL_FRAMES) * 100));
+        const progress = Math.round((loadedCount / TOTAL_FRAMES) * 100);
+        setLoadingProgress(progress);
+        onLoadingProgress?.(progress);
         if (loadedCount === TOTAL_FRAMES) {
           imagesRef.current = images;
           setImagesLoaded(true);
+          onLoadingComplete?.();
         }
       };
       img.onerror = () => {
         loadedCount++;
-        setLoadingProgress(Math.round((loadedCount / TOTAL_FRAMES) * 100));
+        const progress = Math.round((loadedCount / TOTAL_FRAMES) * 100);
+        setLoadingProgress(progress);
+        onLoadingProgress?.(progress);
+        if (loadedCount === TOTAL_FRAMES) {
+          imagesRef.current = images;
+          setImagesLoaded(true);
+          onLoadingComplete?.();
+        }
       };
       images.push(img);
     }
@@ -329,17 +347,6 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Loading placeholder */}
-      {!imagesLoaded && (
-        <div className="absolute inset-0 bg-[#E8E4DC] flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-16 h-16 border-4 border-[#2D3E2F]/20 border-t-[#2D3E2F] rounded-full animate-spin mb-4 mx-auto" />
-            <p className="text-[#2D3E2F]/60 text-sm">
-              Loading... {loadingProgress}%
-            </p>
-          </div>
-        </div>
-      )}
 
       {/* Video container - fades in and zooms out on scroll */}
       <div
