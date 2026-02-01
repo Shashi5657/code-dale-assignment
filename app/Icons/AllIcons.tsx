@@ -263,7 +263,7 @@ export const IterateIcon = () => (
         {/* Label */}
         <div className="relative flex-1">
             <div className="absolute top-[36%] -left-6 flex -translate-y-1/2 items-center gap-2">
-                <div className="atlas-web-sm flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-meadow-700 text-[12px] font-bold text-meadow-50 transition-colors duration-300">
+                <div className="atlas-web-sm flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 text-[12px] font-bold text-[#2D3E2F] group-hover:bg-black group-hover:text-white transition-colors duration-300">
                     1
                 </div>
                 <div className="atlas-web-mono">Iterate</div>
@@ -430,7 +430,7 @@ export const EvaluateIcon = () => (
         {/* Label */}
         <div className="relative flex-1">
             <div className="absolute top-[68%] -left-7 flex -translate-y-1/2 items-center gap-2">
-                <div className="atlas-web-sm flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-meadow-700 text-[12px] font-bold text-meadow-50 transition-colors duration-300">
+                <div className="atlas-web-sm flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 text-[12px] font-bold text-[#2D3E2F] group-hover:bg-black group-hover:text-white transition-colors duration-300">
                     2
                 </div>
                 <div className="atlas-web-mono">Evaluate</div>
@@ -585,7 +585,7 @@ export const DeployIcon = () => (
         {/* Label */}
         <div className="relative flex-1">
             <div className="absolute top-[9%] -left-7 flex -translate-y-1/2 items-center gap-2">
-                <div className="atlas-web-sm flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-meadow-700 text-[12px] font-bold text-meadow-50 transition-colors duration-300">
+                <div className="atlas-web-sm flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 text-[12px] font-bold text-[#2D3E2F] group-hover:bg-black group-hover:text-white transition-colors duration-300">
                     3
                 </div>
                 <div className="atlas-web-mono">Deploy</div>
@@ -832,7 +832,7 @@ export const MonitorIcon = () => (
         {/* Label */}
         <div className="relative flex-1">
             <div className="absolute top-[40%] -left-8 flex -translate-y-1/2 items-center gap-2">
-                <div className="atlas-web-sm flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-meadow-700 text-[12px] font-bold text-meadow-50 transition-colors duration-300">
+                <div className="atlas-web-sm flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 text-[12px] font-bold text-[#2D3E2F] group-hover:bg-black group-hover:text-white transition-colors duration-300">
                     4
                 </div>
                 <div className="atlas-web-mono">Monitor</div>
