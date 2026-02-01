@@ -1,0 +1,571 @@
+@import "tailwindcss/preflight";
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
+
+/* Custom Adaline color palette */
+@theme {
+  --color-adaline-green: #2d3e2f;
+  --color-adaline-green-dark: #1a2a1c;
+  --color-adaline-cream: #f5f3ee;
+  --color-adaline-beige: #e8e4dc;
+  --color-adaline-text: #2d3e2f;
+  --color-adaline-text-muted: #5c6d5e;
+  --color-adaline-border: rgba(45, 62, 47, 0.1);
+  --color-adaline-accent: #4a6b4d;
+
+  --font-family-inter:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+@font-face {
+  font-family: "fragmentMono";
+  src: url("/fonts/FragmentMono-Regular.ttf") format("truetype");
+  letter-spacing: 0.02em;
+  font-size: 14px;
+  font-variant-caps: all-small-caps;
+  line-height: 14px;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "workSans";
+  src: url("/fonts/work-sans.ttf") format("truetype");
+  letter-spacing: -0.04em;
+  line-height: 0.981132;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "atlas-web-lg";
+  src: url("https://db.onlinewebfonts.com/t/493e642fee9b4d2d4bf39a13dea7da8b.eot");
+  src:
+    url("https://db.onlinewebfonts.com/t/493e642fee9b4d2d4bf39a13dea7da8b.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/493e642fee9b4d2d4bf39a13dea7da8b.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/493e642fee9b4d2d4bf39a13dea7da8b.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/493e642fee9b4d2d4bf39a13dea7da8b.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/493e642fee9b4d2d4bf39a13dea7da8b.svg#Atlas Grotesk LG Bold Trial")
+      format("svg");
+}
+
+@font-face {
+  font-family: "atlas-web-mono-1";
+  src: url("/fonts/atlas-web-mono-1.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "atlas-web-mono-2";
+  src: url("/fonts/atlas-web-mono-2.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "atlas-web-mono-3";
+  src: url("/fonts/atlas-web-mono-3.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "atlas-web-mono-4";
+  src: url("/fonts/atlas-web-mono-4.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  :root {
+    /* Layout variables matching original site */
+    --grid-margin: 24px;
+    --nav-height: 56px;
+    --nav-z-index: 200;
+
+    /* Font variables - matches @font-face declaration */
+    --font-fragment-mono:
+      fragmentMono, "SFMono-Regular", "SF Mono", "JetBrains Mono", "Fira Code",
+      "Cascadia Code", "Source Code Pro", ui-monospace, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+    --font-work-sans: "workSans", sans-serif;
+
+    --shoji-width: 3.5rem;
+  }
+
+  @media (max-width: 639px) {
+    :root {
+      --grid-margin: 16px;
+      --shoji-width: 2.5rem;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 767px) {
+    :root {
+      --grid-margin: 20px;
+      --shoji-width: 3rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --shoji-width: 5rem;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+      --grid-margin: 24px;
+      --shoji-width: 4rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --grid-margin: 32px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --grid-margin: 32px;
+      --shoji-width: 5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    :root {
+      --grid-margin: 48px;
+      --shoji-width: 6rem;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    :root {
+      --grid-margin: 64px;
+      --shoji-width: 8rem;
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: "atlas-web-mono", sans-serif;
+    background-color: var(--color-adaline-cream);
+    color: var(--color-adaline-text);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Navbar styles */
+  .nav-link {
+    @apply text-sm font-medium tracking-wider uppercase;
+    color: var(--color-adaline-green);
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-link:hover {
+    opacity: 0.7;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply px-5 py-2.5 text-sm font-medium rounded-full;
+    background-color: var(--color-adaline-green);
+    color: white;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-adaline-green-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    @apply px-5 py-2.5 text-sm font-medium rounded-full flex items-center gap-2;
+    background-color: white;
+    color: var(--color-adaline-green);
+    border: 1px solid var(--color-adaline-border);
+    transition: all 0.2s ease;
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-adaline-cream);
+    border-color: var(--color-adaline-green);
+  }
+
+  /* Hero typography - improved responsive sizing */
+  .hero-title {
+    font-size: clamp(1.5rem, 4vw, 3.5rem);
+    line-height: 1.15;
+    font-weight: 400;
+    color: var(--color-adaline-green);
+    letter-spacing: -0.02em;
+    max-width: 100%;
+  }
+
+  /* Trusted by logos */
+  .logo-item {
+    @apply flex items-center justify-center;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+
+  .logo-item:hover {
+    opacity: 1;
+  }
+
+  /* Product dropdown styles - responsive */
+  .product-dropdown {
+    @apply absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl;
+    border-bottom: 1px solid var(--color-adaline-border);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    max-height: calc(100vh - var(--nav-height));
+    overflow-y: auto;
+  }
+
+  @media (max-width: 1023px) {
+    .product-dropdown {
+      position: fixed;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+  }
+
+  .product-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Pillar card */
+  .pillar-card {
+    @apply flex flex-col;
+  }
+
+  .pillar-number {
+    @apply w-6 h-6 rounded-full text-xs font-medium flex items-center justify-center;
+    background-color: #d4ddd5;
+    color: var(--color-adaline-green);
+  }
+
+  .pillar-title {
+    @apply text-xs font-medium uppercase tracking-wider mt-2;
+    color: var(--color-adaline-green);
+  }
+
+  .pillar-subtitle {
+    @apply text-xl font-normal mt-1;
+    color: var(--color-adaline-green);
+  }
+
+  .pillar-links {
+    @apply mt-4 space-y-2;
+  }
+
+  .pillar-link {
+    @apply text-sm block;
+    color: var(--color-adaline-text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .pillar-link:hover {
+    color: var(--color-adaline-green);
+  }
+
+  /* Sequence background container */
+  .sequence-container {
+    @apply fixed inset-0 w-full h-full;
+    z-index: 0;
+  }
+
+  .sequence-image {
+    @apply absolute inset-0 w-full h-full object-cover;
+    will-change: transform, opacity;
+  }
+
+  /* Content overlay */
+  .content-overlay {
+    @apply relative z-10;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(var(--r));
+  }
+  to {
+    transform: rotate(calc(var(--r) + 360deg));
+  }
+}
+
+.spin-slow {
+  animation: spin-slow 2s linear infinite;
+}
+
+
+@layer utilities {
+
+  .spin-slow {
+    animation: spin 14s linear infinite;
+  }
+
+  .spin-slower {
+    animation: spin 22s linear infinite;
+  }
+
+  .spin-reverse {
+    animation-direction: reverse;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Fragment Mono font utility */
+  .font-fragment-mono {
+    font-family: fragmentMono, var(--font-fragment-mono);
+  }
+
+  /* Hide scrollbar but allow scrolling */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* GPU acceleration for animations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Iterate icon rotation animations */
+@keyframes iterate-rotate-cw {
+  from {
+    transform: rotate(var(--r, 0deg));
+  }
+  to {
+    transform: rotate(calc(var(--r, 0deg) + 360deg));
+  }
+}
+
+@keyframes iterate-rotate-ccw {
+  from {
+    transform: rotate(var(--r, 0deg));
+  }
+  to {
+    transform: rotate(calc(var(--r, 0deg) - 360deg));
+  }
+}
+
+.iterate-rotate-cw {
+  animation: iterate-rotate-cw 8s linear infinite;
+}
+
+.iterate-rotate-ccw {
+  animation: iterate-rotate-ccw 8s linear infinite;
+}
+
+.group:hover .iterate-rotate-cw {
+  animation-duration: 2s;
+}
+
+.group:hover .iterate-rotate-ccw {
+  animation-duration: 2s;
+}
+
+/* Evaluate icon rotation animations - fast for 2s on hover, then slow */
+@keyframes evaluate-rotate-cw {
+  from {
+    transform: rotate(var(--r, 0deg));
+  }
+  to {
+    transform: rotate(calc(var(--r, 0deg) + 360deg));
+  }
+}
+
+@keyframes evaluate-rotate-ccw {
+  from {
+    transform: rotate(var(--r, 0deg));
+  }
+  to {
+    transform: rotate(calc(var(--r, 0deg) - 360deg));
+  }
+}
+
+@keyframes evaluate-rotate-cw-hover {
+  0% {
+    transform: rotate(var(--r, 0deg));
+  }
+  20% {
+    transform: rotate(calc(var(--r, 0deg) + 360deg));
+  }
+  100% {
+    transform: rotate(calc(var(--r, 0deg) + 720deg));
+  }
+}
+
+@keyframes evaluate-rotate-ccw-hover {
+  0% {
+    transform: rotate(var(--r, 0deg));
+  }
+  20% {
+    transform: rotate(calc(var(--r, 0deg) - 360deg));
+  }
+  100% {
+    transform: rotate(calc(var(--r, 0deg) - 720deg));
+  }
+}
+
+.evaluate-rotate-cw {
+  animation: evaluate-rotate-cw 8s linear infinite;
+}
+
+.evaluate-rotate-ccw {
+  animation: evaluate-rotate-ccw 8s linear infinite;
+}
+
+.group:hover .evaluate-rotate-cw {
+  animation: evaluate-rotate-cw-hover 10s linear infinite;
+}
+
+.group:hover .evaluate-rotate-ccw {
+  animation: evaluate-rotate-ccw-hover 10s linear infinite;
+}
+
+/* Deploy icon - rotates only on hover (fast for 2s, then slow) */
+.deploy-rotate-cw {
+  /* No animation by default - only on hover */
+}
+
+.deploy-rotate-ccw {
+  /* No animation by default - only on hover */
+}
+
+.group:hover .deploy-rotate-cw {
+  animation: evaluate-rotate-cw-hover 10s linear infinite;
+}
+
+.group:hover .deploy-rotate-ccw {
+  animation: evaluate-rotate-ccw-hover 10s linear infinite;
+}
+
+/* Monitor icon - rotates only on hover (fast for 2s, then slow) - only outer dashed circles */
+.monitor-rotate-cw {
+  /* No animation by default - only on hover */
+}
+
+.monitor-rotate-ccw {
+  /* No animation by default - only on hover */
+}
+
+.group:hover .monitor-rotate-cw {
+  animation: evaluate-rotate-cw-hover 10s linear infinite;
+}
+
+.group:hover .monitor-rotate-ccw {
+  animation: evaluate-rotate-ccw-hover 10s linear infinite;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+/* Delay utilities for staggered animations */
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Custom scrollbar for desktop */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-adaline-cream);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-adaline-green);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-adaline-green-dark);
+  }
+}
